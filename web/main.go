@@ -1,21 +1,23 @@
 package main
 
 import (
-    "database/sql"
-    "flag"
-    "log"
-    "net/http"
-    "os"
-    //"html/template"
-    "cmd1/pkg/models/mysql"
-    _ "github.com/go-sql-driver/mysql"
+	"cmd1/pkg/models/mysql"
+	"database/sql"
+	"flag"
+	"html/template"
+	"log"
+	"net/http"
+	"os"
+	"path/filepath"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type application struct {
     infoLog  *log.Logger
     errorLog *log.Logger
     snippets *mysql.SnippetModel
-    //templateCache map[string]*template.Template
+    templateCache map[string]*template.Template
 }
 
 func main() {
@@ -32,17 +34,17 @@ func main() {
     }
     defer db.Close()
 
-    /*templateCache, err := newTemplateCache("./ui/html/")
+    templateCache, err := newTemplateCache("./ui/html")
     if err != nil {
         errorLog.Fatal(err)
         
     }
-*/
+
     app := &application{
         errorLog: errorLog,
         infoLog:  infoLog,
         snippets: &mysql.SnippetModel{DB: db},
-        //templateCache: templateCache,
+        templateCache: templateCache,
     }
 
     srv := &http.Server{
@@ -65,4 +67,34 @@ func openDB(dsn string) (*sql.DB, error) {
         return nil, err
     }
     return db, nil
+}
+func newTemplateCache(dir string) (map[string]*template.Template, error) {
+    cache := map[string]*template.Template{}
+    pages, err := filepath.Glob(filepath.Join(dir, "*.page.tmpl"))
+    if err != nil {
+        return nil, err
+    }
+    for _, page := range pages{
+        name := filepath.Base(page)
+        ts, err := template.ParseFiles(filepath.Join(dir, "base.layout.tmpl"))
+        if err != nil {
+            return nil, err
+        }
+        ts, err = ts.ParseFiles(page)
+        if err != nil {
+            return nil, err
+        }
+        partials, err := filepath.Glob(filepath.Join(dir, "*.partial.tmpl"))
+        if err != nil {
+            return nil, err
+        }
+        for _, partial := range partials {
+            ts, err = ts.ParseFiles(partial)
+            if err != nil {
+                return nil, err
+            }
+        }
+        cache[name] = ts
+    }
+    return cache, nil
 }
