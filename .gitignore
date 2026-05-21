@@ -1,0 +1,85 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.bin
+*.app
+
+# Go workspace files
+/bin
+/pkg
+/dist
+/vendor
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+server.log
+debug.log
+error.log
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment files
+.env
+.env.local
+
+# Backup files
+*.bak
+*.save
+*.backup
+
+# Temporary files
+/tmp
+*.tmp
+*.temp
+
+# Test coverage
+*.cover
+*.coverprofile
+coverage.out
+coverage.html
+
+# Build artifacts
+/build
+/_output
+/binaries
+
+# Session files
+/sessions
+*.session
+
+# Compiled files
+*.o
+*.a
+*.so
+
+# Profile files
+*.prof
+*.cpu
+*.mem
+
+# SSL certificates
+*.pem
+*.crt
+*.key

@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: "Ubuntu Mono", monospace;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.5;
+    background-color: #F1F3F6;
+    color: #34495E;
+}
+
+header, nav, section, footer {
+    padding: 2px calc((100% - 800px) / 2) 0;
+}
+
+header {
+    border-bottom: 1px solid #dfe4eb;
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav {
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+nav a {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #eef4fb;
+    color: #2a4365;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover,
+nav a:focus {
+    background: #d7e7ff;
+}
+
+section {
+    flex: 1;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+}
+
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 18px;
+    color: #1f2d3d;
+}
+
+section p,
+section .home-intro {
+    max-width: 760px;
+    color: #5d6d7d;
+}
+
+h1 a {
+    font-size: 36px;
+    font-weight: bold;
+    background-image: url("/static/img/logo.png");
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    height: 36px;
+    padding-left: 50px;
+}
+
+a {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #1a242f;
+    text-decoration: underline;
+}
+
+.snippet {
+    background: #ffffff;
+    border: 1px solid #dce2e8;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 12px 30px rgba(52, 73, 94, 0.08);
+}
+
+.snippet h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.6rem;
+}
+
+.snippet p {
+    margin: 0.75rem 0;
+    line-height: 1.75;
+}
+
+.snippet .metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    color: #718096;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.snippet pre {
+    background: #f5f7fa;
+    border: 1px solid #e3e8ee;
+    border-radius: 10px;
+    padding: 18px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 1rem 0;
+}
+
+.snippet code {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    color: #2d3748;
+}
+
+footer {
+    padding: 2px calc((100% - 800px) / 2) 30px;
+    color: #667788;
+    font-size: 0.9rem;
+}

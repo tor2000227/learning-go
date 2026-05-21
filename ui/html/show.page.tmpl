@@ -1,0 +1,13 @@
+{{define "title"}}Snippet #{{.Snippet.ID}}{{end}}
+
+{{define "body"}}
+<div class="snippet">
+    <h2>{{.Snippet.Title}}</h2>
+    <p><strong>ID:</strong> {{.Snippet.ID}}</p>
+    <p><strong>Created:</strong> {{.Snippet.Created.Format "Jan 02, 2006 at 15:04"}}</p>
+    <p><strong>Expires:</strong> {{.Snippet.Expires.Format "Jan 02, 2006 at 15:04"}}</p>
+    <h3>Content:</h3>
+    <pre>{{.Snippet.Content}}</pre>
+    <p><a href="/">← Back to home</a></p>
+</div>
+{{end}}

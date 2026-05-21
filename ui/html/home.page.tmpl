@@ -1,0 +1,68 @@
+{{define "title"}}Home{{end}}
+
+{{define "body"}}
+<h2>Latest Snippets</h2>
+{{if .Snippets}}
+    <style>
+        .snippets-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .snippets-table th,
+        .snippets-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .snippets-table th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: bold;
+        }
+        .snippets-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .snippets-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        .snippets-table a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .snippets-table a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    
+    <table class="snippets-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Created</th>
+                <th>Content Preview</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{range .Snippets}}
+                <tr>
+                    <td style="text-align: center;">{{.ID}}</td>
+                    <td><a href='/snippet?id={{.ID}}'>{{.Title}}</a></td>
+                    <td>{{.Created.Format "2006-01-02 15:04"}}</td>
+                    <td>
+                        {{if gt (len .Content) 100}}
+                            {{slice .Content 0 100}}...
+                        {{else}}
+                            {{.Content}}
+                        {{end}}
+                    </td>
+                </tr>
+            {{end}}
+        </tbody>
+    </table>
+{{else}}
+    <p>There's nothing to see here... yet!</p>
+    <p><a href="/snippet/create">Create your first snippet</a></p>
+{{end}}
+{{end}}
